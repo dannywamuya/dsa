@@ -106,6 +106,14 @@ class LinkedList<T> implements Iterable<T> {
 		return node.val;
 	}
 
+	peekFront(): T | null {
+		return this.list ? this.list.head.val : null;
+	}
+
+	peekBack(): T | null {
+		return this.list ? this.list.tail.val : null;
+	}
+
 	indexOf(val: T, equalsFunction?: EqualsFunction<T>): number {
 		if (!this.list) return -1;
 
@@ -123,7 +131,7 @@ class LinkedList<T> implements Iterable<T> {
 		return i;
 	}
 
-	contains(val: T) {
+	contains(val: T): boolean {
 		return this.indexOf(val) !== -1;
 	}
 
@@ -216,20 +224,5 @@ class LinkedList<T> implements Iterable<T> {
 		}
 	}
 }
-
-const test = () => {
-	let list: LinkedList<string> = new LinkedList();
-	list.addFront('hello');
-	list.addBack('world');
-	list.addAt(1, 'hi');
-
-	// list.print();
-	// console.log(list.get(1));
-	// console.log(list.indexOf('world'));
-	// console.log(list.contains('world'));
-	// console.log(list.removeFront());
-};
-
-test();
 
 export default LinkedList;
