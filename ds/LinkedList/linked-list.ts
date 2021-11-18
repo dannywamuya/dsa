@@ -20,8 +20,10 @@ interface List<T> {
 
 class LinkedList<T> implements Iterable<T> {
 	private list: List<T> | undefined;
+	private equalsFunction: EqualsFunction<T>;
 
-	constructor() {
+	constructor(equalsFn?: EqualsFunction<T>) {
+		if (equalsFn) this.equalsFunction = equalsFn;
 		this.list = undefined;
 	}
 
@@ -114,10 +116,10 @@ class LinkedList<T> implements Iterable<T> {
 		return this.list ? this.list.tail.val : null;
 	}
 
-	indexOf(val: T, equalsFunction?: EqualsFunction<T>): number {
+	indexOf(val: T): number {
 		if (!this.list) return -1;
 
-		const equalsFn = equalsFunction || defaultEquals;
+		const equalsFn = this.equalsFunction || defaultEquals;
 
 		let i = 0;
 		let node = this.list!.head;

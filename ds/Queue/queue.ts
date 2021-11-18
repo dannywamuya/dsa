@@ -1,7 +1,7 @@
 import LinkedList from '../LinkedList/linked-list';
 import { EqualsFunction } from '../utils';
 
-class Stack<T> implements Iterable<T> {
+class Queue<T> implements Iterable<T> {
 	private list: LinkedList<T>;
 
 	constructor(equalsFn?: EqualsFunction<T>) {
@@ -20,15 +20,19 @@ class Stack<T> implements Iterable<T> {
 		this.list.clear();
 	}
 
-	push(val: T) {
+	enqueue(val: T) {
 		this.list.addBack(val);
 	}
 
-	pop(): T {
-		return this.list.removeBack();
+	dequeue(): T {
+		return this.list.removeFront();
 	}
 
-	peek(): T | null {
+	peekFront(): T | null {
+		return this.list.peekFront();
+	}
+
+	peekBack(): T | null {
 		return this.list.peekBack();
 	}
 
@@ -41,4 +45,4 @@ class Stack<T> implements Iterable<T> {
 	}
 }
 
-export default Stack;
+export default Queue;
